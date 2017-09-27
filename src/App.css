@@ -1,0 +1,29 @@
+.face-container {
+    margin: 10px auto;
+    padding: 25px;
+    width: 800px;
+    height: 700px;
+    background-color: #dedede;
+}
+.face-annotation {
+    width: 300px;
+}
+.coord {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    position: absolute;
+    border: 2px solid #009688;
+    border-radius: 50%;
+}
+.skipped {
+    padding: 5px 15px;
+    font-weight: bold;
+    color: rgb(144, 54, 162);
+}
+.skipped span:after {
+    content: ', ';
+}
+.skipped span:last-child:after {
+    content: '';
+}
