@@ -5,8 +5,14 @@
     height: 700px;
     background-color: #dedede;
 }
-.face-annotation {
+.face {
     width: 300px;
+    height: auto;
+    position: relative;
+}
+.face-annotation {
+    width: 100%;
+    position: relative;
 }
 .coord {
     width: 8px;

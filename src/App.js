@@ -13,10 +13,15 @@ class App extends Component {
    this.coord = this.coord.bind(this);
   }
 
-  coord(x, y) {
+  coord(e) {
     let data = [];
-    let left = x-5;
-    let top = y-5;
+    let obj = document.querySelector('.face');
+    let x = e.pageX;
+    let y = e.pageY;
+    let posX = obj.offsetTop;
+    let posY = obj.offsetLeft;
+    let left = (x-5)-posY;
+    let top = (y-5)-posX;
     let count = this.state.coord.length;
     let skip = this.state.skipped;
     skip.splice(0,1);
@@ -31,12 +36,11 @@ class App extends Component {
 
   render() {
     let circle, skipped;
-    console.log(this.state.skipped)
     if(this.state.coord.length < 8) {
       circle = (
         <img className="face-annotation" src={Jobs} alt="Steve Jobs" onClick={(event) => {
-          this.coord(event.clientX, event.clientY)
-        }} />
+          this.coord(event)
+        }}/>
       )
     } else {
       circle = (
@@ -45,7 +49,7 @@ class App extends Component {
     }
     if(this.state.skipped.length) {
       skipped = (
-        <p className="skipped">Skipped: {this.state.skipped.map((key) => (<span>{key}</span>))}</p>
+        <p className="skipped">Skipped: {this.state.skipped.map((key, id) => (<span key={id}>{key}</span>))}</p>
       )
     } else {
       skipped = <p className="skipped">You used all the elements</p>;
@@ -53,8 +57,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="face-container">
-          {circle}
-          {this.state.coord.map((key) => key)}
+            <div className="face">
+                {circle}
+                {this.state.coord.map((key) => key)}
+            </div>
           {skipped}
         </div>
       </div>
